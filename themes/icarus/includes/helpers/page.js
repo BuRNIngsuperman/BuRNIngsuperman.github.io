@@ -81,10 +81,13 @@ module.exports = function (hexo) {
         return metaDOMArray.join('\n');
     });
 
-    hexo.extend.helper.register('has_thumbnail', function (post) {
+    hexo.extend.helper.register('has_thumbnail', function (post, isArticle = false) {
         const getConfig = hexo.extend.helper.get('get_config').bind(this);
         const allowThumbnail = getConfig('article.thumbnail', true);
         if (!allowThumbnail) {
+            return false;
+        }
+        if (isArticle && post['article-thumbnail'] === false){
             return false;
         }
         return post.hasOwnProperty('thumbnail') && post.thumbnail;
