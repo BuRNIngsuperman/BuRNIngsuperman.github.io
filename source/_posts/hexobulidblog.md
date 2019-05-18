@@ -1,6 +1,8 @@
 ---
 title: 利用hexo框架搭建blog并部署
 date: 2019-04-25 21:32:46
+categories: 
+    - hexo
 tags: 
     - hexo
     - blog
