@@ -6,6 +6,7 @@ categories:
     - Markdown
 tags: 
     - Markdown
+    - 入门
 ---
 ##  什么是Markdown
 Markdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。

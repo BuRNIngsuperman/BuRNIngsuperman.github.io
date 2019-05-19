@@ -127,7 +127,7 @@ widgets:
         # Path or URL to the avatar to be shown in the profile widget
         avatar: /images/avatar.png 
         # Email address for the Gravatar to be shown in the profile widget
-        gravatar:
+        gravatar: 2502975747@qq.com
         # Whether to show avatar image rounded or square
         avatar_rounded: false
         # Path or URL for the follow button

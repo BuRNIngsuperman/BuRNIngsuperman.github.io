@@ -6,6 +6,7 @@ categories:
 tags: 
     - hexo
     - blog
+    - icarus
 ---
 ## 前言
 使用Github pages服务进行搭建和部署博客的好处有：
