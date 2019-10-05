@@ -60,7 +60,7 @@ Markdown的目标是实现【易读易写】。写这样一篇语法汇总，旨
 ###  代码工具
 ####  行内代码
 代码：
-```md
+```markdown
 `这是行间代码`
 `This is inline code`
 在 Java 输出 Hello, world ：`System.out.print("Hello, World!");`
@@ -81,19 +81,22 @@ Markdown的目标是实现【易读易写】。写这样一篇语法汇总，旨
 
 示例一（方法一）：
 
-```md
+```markdown
     // JQuery 的 Hello, world
     $(function(){
     alert("Hello, world!")
     });
+
 ```
 
 效果：
-
+```js
     // JQuery 的 Hello, world
     $(function(){
     alert("Hello, world!")
     });
+
+```
 
 示例二（方法二）【/为转义字符忽略不计】：
 
@@ -204,7 +207,7 @@ Markdown中，用符号>开启一行引用，如果文字有多行则用多个>�
 
 #### 链接网址
 代码：
-```md
+```markdown
 [ 百度网址 ](https://www.baidu.com/)
 ```
 效果：
@@ -212,7 +215,7 @@ Markdown中，用符号>开启一行引用，如果文字有多行则用多个>�
 
 #### 链接图片
 代码：
-```md
+```markdown
 ![天气预报]（http://cdn.heweather.com/cond_icon/309.png）    
 备注：括号一定要是英文字符哦！
 ```
