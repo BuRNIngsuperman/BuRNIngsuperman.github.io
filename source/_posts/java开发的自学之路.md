@@ -7,6 +7,12 @@ categories:
     - Java
 ---
  自己总结的Java开发的自学之路，并且按着这个目标路程不断学习前进
+ 一个好的Java工程师应当掌握以下技能：
+- 扎实的JAVA 基础，Think in java上介绍的内容都能理解，做到这一步恭喜成为了程序员。
+- 熟练使用主流框架，如：mybatis，spring 等。
+- 研究过至少一种以web框架的源码，如spring mvc ，struts 等。
+- 架构过或者参与过高并发系统设计，知道如何应对突发情况。
+- 对自己所处的业务能够根据自己的知识维度，提出优化建议或者预测其风险点。
  <!--more-->
 
 ## 基础知识：
@@ -29,7 +35,7 @@ categories:
 
 ### 应用层框架
 
-- ~~ssh: spring + structs + hibernate~~
+- ~~ssh: spring + structs + hibernate~~(过时已经不怎么使用)
 - ssm: spring + springmvc + mybatis
 - spring boot
 

@@ -53,7 +53,7 @@ article:
     # https://github.com/highlightjs/highlight.js/tree/master/src/styles
     highlight: atom-one-dark
     # Whether to show article thumbnail images
-    thumbnail: true
+    thumbnail: false
     # Whether to show estimate article reading time
     readtime: true
 # Search plugin settings
@@ -121,9 +121,9 @@ widgets:
         # Author name to be shown in the profile widget
         author: Burning
         # Title of the author to be shown in the profile widget
-        author_title: software engineer
+        author_title: software engineer&Developer
         # Author's current location to be shown in the profile widget
-        location: NanJing, China
+        location: Suzhou, China
         # Path or URL to the avatar to be shown in the profile widget
         avatar: /images/avatar.png 
         # Email address for the Gravatar to be shown in the profile widget

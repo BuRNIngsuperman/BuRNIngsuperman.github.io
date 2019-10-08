@@ -62,11 +62,11 @@ Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工�
 在电脑的某个地方创建一个用来存放博客代码的地方，并在此文件夹中进行初始化：
 `$ hexo init`
 hexo会自动下载一些文件到这个目录并建立Hexo框架，我的目录结构如下:
-![hexo博客目录结构](hexobulidblog/截图1.png)
+![hexo博客目录结构](https://i.loli.net/2019/10/08/3yInYTEPXCp6df9.png)
 `$ hexo g #生成`
 `$ hexo s #启动服务`
 执行上述命令后，hexo会在public文件夹中自动生成相应的HTML文件：
-![public文件夹结构](hexobulidblog/截图2.png)
+![Public文件夹结构](https://i.loli.net/2019/10/08/ypWYaPV84rhS2be.png)
 hexo s开启本地预览服务，打开浏览器访问 http://localhost:4000 即可看到内容，第一次初始化时hexo已经帮我们初始化了主题。
 
 ### 修改主题
