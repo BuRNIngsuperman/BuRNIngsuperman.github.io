@@ -65,8 +65,18 @@ search:
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins
 comment:
     # Name of the comment plugin
-    type: disqus
-    shortname: Burning-blog
+    # Disqus commment
+    # type: disqus
+    # shortname: Burning-blog
+
+    # Valine
+    type: valine
+    app_id: Gxs5txGP2z6Ypi7xkX2wzcdm-gzGzoHsz        # (required) LeanCloud application id
+    app_key: PGjapsDlHlD942ByeOVYOeSQ       # (required) LeanCloud application key
+    notify: false           # (optional) receive email notification
+    verify: false           # (optional) show verification code
+    placeholder: 欢迎交流讨论...   # (optional) comment box placeholder text
+
 # Donation entries
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 #donate:

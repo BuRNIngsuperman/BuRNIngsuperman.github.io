@@ -6,7 +6,6 @@ categories:
 tags: 
     - hexo
     - blog
-    - icarus
 ---
 ## 前言
 使用Github pages服务进行搭建和部署博客的好处有：
@@ -97,7 +96,7 @@ deploy:
 ## 常用的hexo指令
 
 常见指令：
-```
+```md
 hexo new "postName" #新建文章
 hexo new page "pageName" #新建页面
 hexo generate #生成静态页面至public目录
