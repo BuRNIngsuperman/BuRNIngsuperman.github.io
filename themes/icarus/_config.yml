@@ -30,7 +30,7 @@ navbar:
         About: /about/
     # Navigation bar links to be shown on the right
     links:
-        Burning GitHub:
+        BurningCode GitHub:
             icon: fab fa-github
             url: 'https://github.com/BuRNIngsuperman'
 # Footer section link settings
@@ -75,7 +75,7 @@ comment:
     app_key: PGjapsDlHlD942ByeOVYOeSQ       # (required) LeanCloud application key
     notify: false           # (optional) receive email notification
     verify: false           # (optional) show verification code
-    placeholder: 欢迎交流讨论...   # (optional) comment box placeholder text
+    placeholder: 欢迎一起交流讨论...   # (optional) comment box placeholder text
 
 # Donation entries
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
@@ -129,7 +129,7 @@ widgets:
         # Where should the widget be placed, left or right
         position: left
         # Author name to be shown in the profile widget
-        author: Burning
+        author: BurningCode
         # Title of the author to be shown in the profile widget
         author_title: software engineer&Developer
         # Author's current location to be shown in the profile widget

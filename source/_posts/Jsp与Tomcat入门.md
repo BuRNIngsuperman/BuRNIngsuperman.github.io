@@ -1,12 +1,16 @@
 ---
-title: Jsp与Tomcat入门
+title: JSP就是这么简单（入门篇）
 date: 2019-12-01 17:03:50
 tags:
 categories:
 ---
-## JSP：动态网页
 
-jsp页面可以看作在html页面中嵌入Java代码，嵌入符号：<%和%>
+## 什么是JSP
+
+JSP的全称是Java Server Pages,即Java服务器页面。JSP是基于程序的页面其特点是HTML和Java语言并存，JSP页面可以看作在html页面中嵌入Java代码
+
+<!--more-->
+> HTML的全称是Hyper Text Markup Language,是一种常见的前端静态页面语言。
 
 静态与动态：
 
@@ -15,13 +19,18 @@ jsp页面可以看作在html页面中嵌入Java代码，嵌入符号：<%和%>
 
 动态网页需要使用到服务端脚本语言（JSP）
 
-## 架构
+## 为什么需要JSP
+
+JSP是为了简化Servelet的工作而出现的替代品，Servelet输出前端HTML页面,JSP就是为了替代Servelet输出HTML页面的。
+要了解JSP的原理，我们需要先简单地了解Servelet和网络的工作原理，以在Tomcat开发为例。
+
+## 常见的服务器架构架构
 
 BS： Browser Server
 
 CS：Client Server
 
-## 创建状态码
+## 页面状态码
 
 200： 一切正常
 
@@ -46,7 +55,6 @@ CS：Client Server
 </welcome-file-list>
 ```
 就会指定index.jsp为首页
-
 
 
 ## 虚拟路径
@@ -79,5 +87,17 @@ conf/Catalina/localhost/新建项目名.xml
 
 ## 虚拟主机
 
+每一个主机在访问互联网中的域名时，会访问互联网中的域名解析器（DNS）根据域名-IP映射关系找到域名对应的IP地址进行访问。但是在访问互联网中的DNS之前，会首先访问本机的域名解析器，因此可以通过虚拟主机访问某个域名就访问到本机。
+通过修改Tomat里面conf/sever.xml文件中Host标签：
+```
+<Host appBase="项目路径" name="域名名称">
+<Context docBase="项目路径" path="url路径虚拟路径">
+</Host>
 
+```
+然后在Engine中默认defaultHost改为相应的`www.test.com`,最后在driver中host文件加入相应的域名-IP映射。然后就可以访问该域名进而访问到对应的主机。
+>将端口号改为80后就可以认为时默认端口，访问域名时就不用加端口号
 
+> 流程：
+> www.test.com -> host找映射 -> server.xml找Engine的defaultHost -> 通过“/”映射到对应的项目地址
+> 
