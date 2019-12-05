@@ -22,15 +22,16 @@ JSP的全称是Java Server Pages,即Java服务器页面。JSP是基于程序的�
 ## 为什么需要JSP
 
 JSP是为了简化Servelet的工作而出现的替代品，Servelet输出前端HTML页面,JSP就是为了替代Servelet输出HTML页面的。
+
 要了解JSP的原理，我们需要先简单地了解Servelet和网络的工作原理，以在Tomcat开发为例。
 
-## 常见的服务器架构架构
+### 常见的服务器架构
 
 BS： Browser Server
 
 CS：Client Server
 
-## 页面状态码
+### 页面状态码
 
 200： 一切正常
 
@@ -44,7 +45,7 @@ CS：Client Server
 
 其他代码：需要积累
 
-## tomcat指定首页
+### tomcat指定首页
 
 在项目/WEB-INF/web.xml中写入
 ```xml
@@ -57,7 +58,9 @@ CS：Client Server
 就会指定index.jsp为首页
 
 
-## 虚拟路径
+## 虚拟路径与虚拟主机
+
+### 虚拟路径
 
 将web项目配置到webapps以外的目录：
 
@@ -85,9 +88,10 @@ conf/Catalina/localhost/新建项目名.xml
 > 如果写入Root.xml就可以不用访问项目名
 不需要重启
 
-## 虚拟主机
+### 虚拟主机
 
 每一个主机在访问互联网中的域名时，会访问互联网中的域名解析器（DNS）根据域名-IP映射关系找到域名对应的IP地址进行访问。但是在访问互联网中的DNS之前，会首先访问本机的域名解析器，因此可以通过虚拟主机访问某个域名就访问到本机。
+
 通过修改Tomat里面conf/sever.xml文件中Host标签：
 ```
 <Host appBase="项目路径" name="域名名称">
@@ -100,4 +104,4 @@ conf/Catalina/localhost/新建项目名.xml
 
 > 流程：
 > www.test.com -> host找映射 -> server.xml找Engine的defaultHost -> 通过“/”映射到对应的项目地址
-> 
+
