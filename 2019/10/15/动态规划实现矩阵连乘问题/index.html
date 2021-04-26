@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>动态规划解决矩阵连乘问题 - BurningCode&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="动态规划的概念与分治法相似，动态规划问题都是将问题分解为规模逐渐减小的同类型的子问题。">
+<meta name="keywords" content="算法,动态规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划解决矩阵连乘问题">
+<meta property="og:url" content="https://jinqiuyang.top/2019/10/15/动态规划实现矩阵连乘问题/index.html">
+<meta property="og:site_name" content="BurningCode&#39;s Blog">
+<meta property="og:description" content="动态规划的概念与分治法相似，动态规划问题都是将问题分解为规模逐渐减小的同类型的子问题。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jinqiuyang.top/images/og_image.png">
+<meta property="og:updated_time" content="2020-01-07T08:44:03.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划解决矩阵连乘问题">
+<meta name="twitter:description" content="动态规划的概念与分治法相似，动态规划问题都是将问题分解为规模逐渐减小的同类型的子问题。">
+<meta name="twitter:image" content="https://jinqiuyang.top/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="动态规划解决矩阵连乘问题" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">首页</a>
+                
+                <a class="navbar-item" href="/archives/">归档</a>
+                
+                <a class="navbar-item" href="/categories/">分类</a>
+                
+                <a class="navbar-item" href="/tags/">标签</a>
+                
+                <a class="navbar-item" href="/about/">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="BurningCode GitHub" href="https://github.com/BuRNIngsuperman">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <i class="fas fa-angle-double-right"></i>动态规划解决矩阵连乘问题
+            
+        </h1>
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-15T09:46:37.000Z"><i class="far fa-calendar-alt">&nbsp;</i>2019-10-15</time>
+                
+                <time class="level-item has-text-grey is-hidden-mobile" datetime="2020-01-07T08:44:03.920Z"><i class="far fa-calendar-check">&nbsp;</i>2020-01-07</time>
+                
+                
+                <div class="level-item">
+                <i class="far fa-folder-open has-text-grey"></i>&nbsp;
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    <i class="far fa-clock"></i>&nbsp;
+                    
+                    
+                    8 分钟 读完 (大约 1140 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <div class="content">
+            <h2 id="动态规划的概念"><a href="#动态规划的概念" class="headerlink" title="动态规划的概念"></a>动态规划的概念</h2><p>与分治法相似，动态规划问题都是将问题分解为规模逐渐减小的同类型的子问题。<br><a id="more"></a><br>不同之处：</p>
+<ul>
+<li>分治法往往子问题之间相互独立，不包含公共子问题</li>
+<li>而动态规划分解得到的子问题很多都是重复的</li>
+</ul>
+<p>所以应用动态规划的两个标识是：</p>
+<ul>
+<li>最优子结构，即最优化问题可以化为相应的最优化子问题</li>
+<li>重复子问题</li>
+</ul>
+<h2 id="动态规划问题的一般性解题步骤"><a href="#动态规划问题的一般性解题步骤" class="headerlink" title="动态规划问题的一般性解题步骤"></a>动态规划问题的一般性解题步骤</h2><ol>
+<li>找出最优解的性质，并刻画其最优解结构特征</li>
+<li>递归地找出最优解(写出其动态规划方程)</li>
+<li>计算出最优解的值，通常采用自底向上的方法</li>
+<li>根据计算最优解时得到的信息，以递归的方式构造一个最优解</li>
+</ol>
+<h2 id="矩阵连乘问题-矩阵链乘法"><a href="#矩阵连乘问题-矩阵链乘法" class="headerlink" title="矩阵连乘问题(矩阵链乘法)"></a>矩阵连乘问题(矩阵链乘法)</h2><h3 id="问题的描述"><a href="#问题的描述" class="headerlink" title="问题的描述"></a>问题的描述</h3><p>对于给定的n个矩阵，$M_1,M_2,\dots,M_n$,其中矩阵$M_i$ 和$M_j$是可乘的，要求确定计算矩阵连乘积($M_1 M_2 \dots M_n$)的计算次序，使得按照该次数计算矩阵连乘积时需要的乘法次数最少</p>
+<p>示例如下：<br><img src="https://i.loli.net/2019/10/15/UhrfbioWHdvOjpL.png" alt="矩阵连乘示例"></p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>对于矩阵链的连乘问题，我们首先需要确定最优解的结构并从中推出递归动态规划方程，我们用$A_{i,j}$表示$A_i,A_{i+1},\dots,A_j$矩阵连乘的结果，对于最优化的最终结果，我们可以在最终连乘的上一步在$A_k$和$A_{k+1}$之间把矩阵链划开，则前缀$A_{i,k}$和后缀$A_{k+1,j}$是其子问题，同时也满足最优化问题，即是最优子结构。<br>我们令$m[i,j]$为计算矩阵链$A_{i,j}$乘法次数的最小值,矩阵$A_i$的大小为$p_{i-1}\times p_i$,可知$A_{i,k}$和$A_{k+1,j}$相乘的代价为$p_{i-1}p_k p_j$次标量乘法运算。则推导其递归求解方程为：</p>
+<p>$$<br>    m[i,j] =<br>    \begin{cases}<br>    0 &amp; \text{如果 i = j} \\<br>    \min_{i\leq k &lt;j}\lbrace{m[i,k]+m[k+1,j]+p_{i-1}p_k p_j}\rbrace &amp; \text{如果 i &lt; j}<br>    \end{cases}<br>$$</p>
+<p>这时候我们就可以通过递归方程来计算出最优解的代价，这里我们可以采用自底向上的动态规划方法或改进的动态规划方法即备忘录法来计算所需的最小代价，最后一般通过递归的方式来构造最优解的处理，即矩阵链乘时括号化的步骤。</p>
+<h3 id="代码实现-Java"><a href="#代码实现-Java" class="headerlink" title="代码实现(Java)"></a>代码实现(Java)</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">package</span> algorithms.dynamic_plan;</span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * 动态规划法和备忘录法解决矩阵连乘问题</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> jqy</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MatrixChain</span> </span>&#123;</span><br><span class="line">    <span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">     * array[i][j]表示Ai...Aj相乘最少计算次数</span></span><br><span class="line"><span class="hljs-comment">     * s[i][j]=k,表示Ai...Aj这(j-i+1)个矩阵中最优子结构为Ai...Ak和A(k+1)...Aj</span></span><br><span class="line"><span class="hljs-comment">     * p[i]表示Ai的行数，p[i+1]表示Ai的列数</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> array[][];</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> p[];</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> s[][];</span><br><span class="line">	</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MatrixChain</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">		p=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>&#125;;</span><br><span class="line">		array=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">4</span>][<span class="hljs-number">4</span>];</span><br><span class="line">		s=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">4</span>][<span class="hljs-number">4</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MatrixChain</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n,<span class="hljs-keyword">int</span> []p)</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">this</span>.p=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n+<span class="hljs-number">1</span>];</span><br><span class="line">		<span class="hljs-keyword">this</span>.array=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n][n];</span><br><span class="line">		<span class="hljs-keyword">this</span>.s=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">4</span>][<span class="hljs-number">4</span>];</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;p.length;i++)</span><br><span class="line">			<span class="hljs-keyword">this</span>.p[i]=p[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-comment">/*********************方法一，动态规划**********************************/</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">martixChain</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">int</span> n=array.length;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++) </span><br><span class="line">			array[i][i]=<span class="hljs-number">0</span>;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> r=<span class="hljs-number">2</span>;r&lt;=n;r++)&#123;</span><br><span class="line">			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=n-r;i++)&#123;</span><br><span class="line">				<span class="hljs-keyword">int</span> j=i+r-<span class="hljs-number">1</span>;</span><br><span class="line">				array[i][j]=array[i+<span class="hljs-number">1</span>][j]+p[i]*p[i+<span class="hljs-number">1</span>]*p[j+<span class="hljs-number">1</span>];</span><br><span class="line">				s[i][j]=i;</span><br><span class="line">				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=i+<span class="hljs-number">1</span>;k&lt;j;k++)&#123;</span><br><span class="line">					<span class="hljs-keyword">int</span> t=array[i][k]+array[k+<span class="hljs-number">1</span>][j]+p[i]*p[k+<span class="hljs-number">1</span>]*p[j];</span><br><span class="line">					<span class="hljs-keyword">if</span>(t&lt;array[i][j])&#123;</span><br><span class="line">						array[i][j]=t;</span><br><span class="line">						s[i][j]=k;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">	 * 如果待求矩阵为：Ap...Aq,then a=0,b=q-p</span></span><br><span class="line"><span class="hljs-comment">	 */</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">traceBack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(a&lt;b)&#123;</span><br><span class="line">			traceBack(a, s[a][b]);</span><br><span class="line">			traceBack(s[a][b]+<span class="hljs-number">1</span>, b);</span><br><span class="line">			System.out.println(<span class="hljs-string">"先把A"</span>+a+<span class="hljs-string">"到A"</span>+s[a][b]+<span class="hljs-string">"括起来，在把A"</span>+(s[a][b]+<span class="hljs-number">1</span>)+</span><br><span class="line">					<span class="hljs-string">"到A"</span>+b+<span class="hljs-string">"括起来，然后把A"</span>+a+<span class="hljs-string">"到A"</span>+b+<span class="hljs-string">"括起来"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="hljs-comment">/*********************方法二：备忘录方法*****************************/</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">memorizedMatrixChain</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">int</span> n=array.length;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i;j&lt;n;j++)</span><br><span class="line">				array[i][j]=<span class="hljs-number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">return</span> lookUpChain(<span class="hljs-number">0</span>,n-<span class="hljs-number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">lookUpChain</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span>(array[a][b]!=<span class="hljs-number">0</span>)</span><br><span class="line">			<span class="hljs-keyword">return</span> array[a][b];</span><br><span class="line">		<span class="hljs-keyword">if</span>(a==b)</span><br><span class="line">			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">		array[a][b]=lookUpChain(a, a)+lookUpChain(a+<span class="hljs-number">1</span>, b)+p[a]*p[a+<span class="hljs-number">1</span>]*p[b+<span class="hljs-number">1</span>];</span><br><span class="line">		s[a][b]=a;</span><br><span class="line">		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=a+<span class="hljs-number">1</span>;k&lt;b;k++)&#123;</span><br><span class="line">			<span class="hljs-keyword">int</span> t=lookUpChain(a, k)+lookUpChain(k+<span class="hljs-number">1</span>, b)+p[a]*p[k+<span class="hljs-number">1</span>]*p[b+<span class="hljs-number">1</span>];</span><br><span class="line">			<span class="hljs-keyword">if</span>(t&lt;array[a][b])&#123;</span><br><span class="line">				array[a][b]=t;</span><br><span class="line">				s[a][b]=k;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">return</span> array[a][b];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;</span><br><span class="line">		MatrixChain strassen=<span class="hljs-keyword">new</span> MatrixChain();</span><br><span class="line">		<span class="hljs-comment">//strassen.martixChain();</span></span><br><span class="line">		strassen.memorizedMatrixChain();</span><br><span class="line">		strassen.traceBack(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+            <ul class="post-copyright">
+            <li><strong>本文标题：</strong><a href="https://jinqiuyang.top/2019/10/15/动态规划实现矩阵连乘问题/">动态规划解决矩阵连乘问题</a></li>
+            <li><strong>本文作者：</strong><a href="https://jinqiuyang.top">BurningCode</a></li>
+            <li><strong>本文链接：</strong><a href="https://jinqiuyang.top/2019/10/15/动态规划实现矩阵连乘问题/">https://jinqiuyang.top/2019/10/15/动态规划实现矩阵连乘问题/</a></li>
+            <li><strong>发布时间：</strong>2019-10-15</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+            </li>
+            </ul>
+        
+        
+        <hr style="height:1px;margin:1rem 0">
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <i class="fas fa-tags has-text-grey"></i>&nbsp;
+                    <a class="has-link-grey -link" href="/tags/动态规划/">动态规划</a>,&nbsp;<a class="has-link-grey -link" href="/tags/算法/">算法</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/01/Jsp与Tomcat入门/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">JSP就是这么简单（入门篇）</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/11/Java学习笔记一/">
+                <span class="level-item">Java学习笔记一</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'Gxs5txGP2z6Ypi7xkX2wzcdm-gzGzoHsz',
+        app_key: 'PGjapsDlHlD942ByeOVYOeSQ',
+        placeholder: '欢迎一起交流讨论...'
+    });
+</script>
+
+    </div>
+</div>
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level" style="margin-bottom:1rem">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <img class="image is-96x96 has-mb-6" src="/images/avatar.jpg" alt="BurningCode">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        BurningCode
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        software engineer&amp;Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Suzhou, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level menu-list is-mobile" style="margin-bottom:1rem">
+            <div class="level-item has-text-centered is-marginless">
+                <a href="/archives/">
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        11
+                    </p>
+                </a>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <a href="/categories/">
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        7
+                    </p>
+                </a>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <a href="/tags/">
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        11
+                    </p>
+                </a>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/BuRNIngsuperman" target="_blank">
+                <i class="fab fa-github"></i>&nbsp;&nbsp;关注我</a>
+        </div>
+        
+        
+    </div>
+</div>
+
+    
+        
+<div class="card widget column-left is-sticky" id="toc" style="max-height: 600px;overflow: auto">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#动态规划的概念">
+        <span class="has-mr-6">1</span>
+        <span>动态规划的概念</span>
+        </a></li><li>
+        <a class="is-flex" href="#动态规划问题的一般性解题步骤">
+        <span class="has-mr-6">2</span>
+        <span>动态规划问题的一般性解题步骤</span>
+        </a></li><li>
+        <a class="is-flex" href="#矩阵连乘问题-矩阵链乘法">
+        <span class="has-mr-6">3</span>
+        <span>矩阵连乘问题(矩阵链乘法)</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#问题的描述">
+        <span class="has-mr-6">3.1</span>
+        <span>问题的描述</span>
+        </a></li><li>
+        <a class="is-flex" href="#问题分析">
+        <span class="has-mr-6">3.2</span>
+        <span>问题分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码实现-Java">
+        <span class="has-mr-6">3.3</span>
+        <span>代码实现(Java)</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="动态规划解决矩阵连乘问题" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 BurningCode&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                        
+                        <i class="fab fa-creative-commons"></i>&nbsp;<i class="fab fa-creative-commons-by"></i>&nbsp;<i class="fab fa-creative-commons-nc"></i>&nbsp;<i class="fab fa-creative-commons-sa"></i>&nbsp;
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Burning GitHub" href="https://github.com/BuRNIngsuperman">
+                        
+                        <i class="fab fa-github"></i>&nbsp;
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
