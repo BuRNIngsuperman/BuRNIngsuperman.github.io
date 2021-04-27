@@ -1,213 +1,32 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-<title>Markdown语法总结 - BurningCode&#39;s Blog</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-
-    <meta name="description" content="什么是MarkdownMarkdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。">
-<meta name="keywords" content="Markdown,入门">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Markdown语法总结">
-<meta property="og:url" content="https://jinqiuyang.top/2019/04/28/learnMarkdown/index.html">
-<meta property="og:site_name" content="BurningCode&#39;s Blog">
-<meta property="og:description" content="什么是MarkdownMarkdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jinqiuyang.top/images/og_image.png">
-<meta property="og:updated_time" content="2020-01-07T08:44:03.920Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown语法总结">
-<meta name="twitter:description" content="什么是MarkdownMarkdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。">
-<meta name="twitter:image" content="https://jinqiuyang.top/images/og_image.png">
-
-
-
-
-
-
-
-<link rel="icon" href="/images/favicon.svg">
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
-
-
-    
-    
-    
-    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
-    
-
-    
-    
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
-    
-
-    
-    
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
-
-
-    
-    
-    
-    
-
-<link rel="stylesheet" href="/css/back-to-top.css">
-
-
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-<link rel="stylesheet" href="/css/progressbar.css">
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
-    
-    
-    
-
-    
-    
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-
-    
-
-
-<link rel="stylesheet" href="/css/style.css">
-</head>
-<body class="is-3-column">
-    <nav class="navbar navbar-main">
-    <div class="container">
-        <div class="navbar-brand is-flex-center">
-            <a class="navbar-item navbar-logo" href="/">
-            
-                <img src="/images/logo.svg" alt="Markdown语法总结" height="28">
-            
-            </a>
-        </div>
-        <div class="navbar-menu">
-            
-            <div class="navbar-start">
-                
-                <a class="navbar-item" href="/">首页</a>
-                
-                <a class="navbar-item" href="/archives/">归档</a>
-                
-                <a class="navbar-item" href="/categories/">分类</a>
-                
-                <a class="navbar-item" href="/tags/">标签</a>
-                
-                <a class="navbar-item" href="/about/">关于</a>
-                
-            </div>
-            
-            <div class="navbar-end">
-                
-                    
-                    
-                    <a class="navbar-item" target="_blank" title="BurningCode GitHub" href="https://github.com/BuRNIngsuperman">
-                        
-                        <i class="fab fa-github"></i>
-                        
-                    </a>
-                    
-                
-                
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
-                
-                <a class="navbar-item search" title="搜索" href="javascript:;">
-                    <i class="fas fa-search"></i>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</nav>
-    
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-content article ">
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <i class="fas fa-angle-double-right"></i>Markdown语法总结
-            
-        </h1>
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-28T01:28:49.000Z"><i class="far fa-calendar-alt">&nbsp;</i>2019-04-28</time>
-                
-                <time class="level-item has-text-grey is-hidden-mobile" datetime="2020-01-07T08:44:03.920Z"><i class="far fa-calendar-check">&nbsp;</i>2020-01-07</time>
-                
-                
-                <div class="level-item">
-                <i class="far fa-folder-open has-text-grey"></i>&nbsp;
-                <a class="has-link-grey -link" href="/categories/Markdown/">Markdown</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    <i class="far fa-clock"></i>&nbsp;
-                    
-                    
-                    11 分钟 读完 (大约 1628 个字)
-                </span>
-                
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span>次访问
-                </span>
-                
-            </div>
-        </div>
-        
-        <div class="content">
-            <h2 id="什么是Markdown"><a href="#什么是Markdown" class="headerlink" title="什么是Markdown"></a>什么是Markdown</h2><p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。<br><a id="more"></a><br>Markdown的目标是实现【易读易写】。写这样一篇语法汇总，旨在可以直观呈现效果和对应的语法格式。你可以把它作为自己在使用 Markdown 初期时手头的参考资料，希望对你开始或者熟练使用 Markdown 能有所帮助。</p>
-<h2 id="Markdown使用语法总结"><a href="#Markdown使用语法总结" class="headerlink" title="Markdown使用语法总结"></a>Markdown使用语法总结</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>代码：<br><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section"># 一级标题</span></span><br><span class="line"><span class="hljs-section">## 二级标题</span></span><br><span class="line"><span class="hljs-section">### 三级标题</span></span><br><span class="line"><span class="hljs-section">#### 四级标题</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-section"># 一级标题 #</span></span><br><span class="line"><span class="hljs-section">## 二级标题 ##</span></span><br><span class="line"><span class="hljs-section">### 三级标题 ###</span></span><br><span class="line"><span class="hljs-section">#### 四级标题 ####</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="改变字体"><a href="#改变字体" class="headerlink" title="改变字体"></a>改变字体</h3><p>粗体：Markdown中，用一对*<em>表示强调，被强调的文字以粗体显示。<br>斜体：Markdown中，用一对</em>表示斜体<br>代码：<br><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-emphasis">*要改变字体为斜体的内容*</span></span><br><span class="line"><span class="hljs-strong">**要改变字体为粗体的内容**</span></span><br><span class="line"><span class="hljs-strong">***要改变字体为斜体+粗体字的内容**</span>*</span><br><span class="line">~~删除文字~~</span><br></pre></td></tr></table></figure></p>
-<p>显示效果：</p>
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Markdown语法总结 - BurningCode&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BurningCode&#039;s Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BurningCode&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="什么是MarkdownMarkdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。"><meta property="og:type" content="blog"><meta property="og:title" content="Markdown语法总结"><meta property="og:url" content="https://jinqiuyang.top/2019/04/28/learnMarkdown/"><meta property="og:site_name" content="BurningCode&#039;s Blog"><meta property="og:description" content="什么是MarkdownMarkdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://cdn.heweather.com/cond_icon/309.png"><meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif"><meta property="article:published_time" content="2019-04-28T01:28:49.000Z"><meta property="article:modified_time" content="2020-01-07T08:44:03.920Z"><meta property="article:author" content="BurningCode"><meta property="article:tag" content="Markdown"><meta property="article:tag" content="入门"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="http://cdn.heweather.com/cond_icon/309.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jinqiuyang.top/2019/04/28/learnMarkdown/"},"headline":"BurningCode's Blog","image":["http://cdn.heweather.com/cond_icon/309.png","http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif"],"datePublished":"2019-04-28T01:28:49.000Z","dateModified":"2020-01-07T08:44:03.920Z","author":{"@type":"Person","name":"BurningCode"},"description":"什么是MarkdownMarkdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。"}</script><link rel="canonical" href="https://jinqiuyang.top/2019/04/28/learnMarkdown/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="BurningCode&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives/">归档</a><a class="navbar-item" href="/categories/">分类</a><a class="navbar-item" href="/tags/">标签</a><a class="navbar-item" href="/about/">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="AlphaLxy GitHub" href="https://github.com/BuRNIngsuperman"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Markdown语法总结</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2019-04-28</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2020-01-07</time></span><span class="level-item"><i class="far fa-folder-open has-text-grey"></i> <a class="link-muted" href="/categories/Markdown/">Markdown</a></span><span class="level-item"><i class="far fa-clock"></i> 11 分钟读完 (大约1628个字)</span><span class="level-item" id="busuanzi_container_page_pv"><i class="far fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><h2 id="什么是Markdown"><a href="#什么是Markdown" class="headerlink" title="什么是Markdown"></a>什么是Markdown</h2><p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通的文本内容具有一定的格式。<br><span id="more"></span><br>Markdown的目标是实现【易读易写】。写这样一篇语法汇总，旨在可以直观呈现效果和对应的语法格式。你可以把它作为自己在使用 Markdown 初期时手头的参考资料，希望对你开始或者熟练使用 Markdown 能有所帮助。</p>
+<h2 id="Markdown使用语法总结"><a href="#Markdown使用语法总结" class="headerlink" title="Markdown使用语法总结"></a>Markdown使用语法总结</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>代码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 一级标题</span></span><br><span class="line"><span class="section">## 二级标题</span></span><br><span class="line"><span class="section">### 三级标题</span></span><br><span class="line"><span class="section">#### 四级标题</span></span><br><span class="line"></span><br><span class="line"><span class="section"># 一级标题 #</span></span><br><span class="line"><span class="section">## 二级标题 ##</span></span><br><span class="line"><span class="section">### 三级标题 ###</span></span><br><span class="line"><span class="section">#### 四级标题 ####</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="改变字体"><a href="#改变字体" class="headerlink" title="改变字体"></a>改变字体</h3><p>粗体：Markdown中，用一对*<em>表示强调，被强调的文字以粗体显示。<br>斜体：Markdown中，用一对</em>表示斜体<br>代码：<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*要改变字体为斜体的内容*</span></span><br><span class="line"><span class="strong">**要改变字体为粗体的内容**</span></span><br><span class="line"><span class="strong">**<span class="emphasis">*要改变字体为斜体+粗体字的内容<span class="strong">**<span class="emphasis">*</span></span></span></span></span><br><span class="line"><span class="strong"><span class="emphasis"><span class="strong"><span class="emphasis">~~删除文字~~</span></span></span></span></span><br></pre></td></tr></table></figure><br>显示效果：</p>
 <blockquote>
 <p><em>要改变字体为斜体的内容</em><br><strong>要改变字体为粗体的内容</strong><br><strong><em>要改变字体为斜体+粗体字的内容</em></strong><br><del>删除文字</del></p>
 </blockquote>
-<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，同时需要在分隔线的上面空一行。<br>代码：<br><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--------</span><br><span class="line"><span class="hljs-strong">*****</span><span class="hljs-emphasis">***</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，同时需要在分隔线的上面空一行。<br>代码：<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--------</span><br><span class="line"><span class="strong">****</span><span class="strong">****</span></span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
 <hr>
-<h3 id="代码工具"><a href="#代码工具" class="headerlink" title="代码工具"></a>代码工具</h3><h4 id="行内代码"><a href="#行内代码" class="headerlink" title="行内代码"></a>行内代码</h4><p>代码：<br><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-code">`这是行间代码`</span></span><br><span class="line"><span class="hljs-code">`This is inline code`</span></span><br><span class="line">在 Java 输出 Hello, world ：<span class="hljs-code">`System.out.print("Hello, World!");`</span></span><br><span class="line">在 Java 输出 Hello, world ：<span class="hljs-code">```</span>System.out.print("Hello, World!");</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">效果：</span><br><span class="line"></span><br><span class="line">`这是行间代码`</span><br><span class="line">`This is inline code`</span><br><span class="line">在 Java 输出 Hello, world ：`System.out.print(&quot;Hello, World!&quot;);`</span><br><span class="line">在 Java 输出 Hello, world ：```System.out.print(&quot;Hello, World!&quot;);</span><br></pre></td></tr></table></figure>
-<h4 id="多行代码"><a href="#多行代码" class="headerlink" title="多行代码"></a>多行代码</h4><blockquote>
-<p>语法：<br>方法一：只需要每行都缩进 4 个空格即可<br>方法二：使用<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">示例一（方法一）：</span><br><span class="line"></span><br><span class="line">```markdown</span><br><span class="line">    // JQuery 的 Hello, world</span><br><span class="line">    $(function()&#123;</span><br><span class="line">    alert(&quot;Hello, world!&quot;)</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>效果：<br><figure class="highlight js hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">// JQuery 的 Hello, world</span></span><br><span class="line">$(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="line">alert(<span class="hljs-string">"Hello, world!"</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>示例二（方法二）【/为转义字符忽略不计】：</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// JQuery 的 Hello, world</span><br><span class="line">$(function()&#123;</span><br><span class="line">alert(&quot;Hello, world!&quot;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h4><p>在需要高亮的代码块的前一行及后一行使用三个反引号<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;#include&quot;iostream.h&quot;</span><br><span class="line">&gt;using namespace std;</span><br><span class="line">&gt;</span><br><span class="line">&gt;in main()&#123;</span><br><span class="line">&gt;    cout &lt;&lt; &quot;Hello World&quot;; // 输出 Hello World</span><br><span class="line">&gt;    return 0;</span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br><span class="line">显示效果：</span><br><span class="line">```cpp</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">in main()&#123;</span><br><span class="line">    cout &lt;&lt; &quot;Hello World&quot;; // 输出 Hello World</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>1.在Markdown的语法中，我们可以使用1.、2.表示有序列表，<br>即数字+点，不过注意序号和后面文字必须得有空格。<br>2.无序列表用“-”或者“<em>”表示，同样的，-和</em>和后年的文字间必须有空格。且通过按tab键可以实现列表的嵌套</p>
-<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>代码：<br><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-bullet">- </span>这是无序列表</span><br><span class="line"><span class="hljs-bullet">- </span>这是无序列表</span><br><span class="line"><span class="hljs-bullet">    - </span>这是无序列表</span><br><span class="line"><span class="hljs-bullet">    - </span>这是无序列表</span><br><span class="line"><span class="hljs-bullet">- </span>这是无序列表</span><br><span class="line"><span class="hljs-bullet">- </span>这是无序列表</span><br><span class="line"><span class="hljs-bullet">* </span>这是无序列表</span><br><span class="line"><span class="hljs-bullet">* </span>这是无序列表</span><br></pre></td></tr></table></figure></p>
+<h3 id="代码工具"><a href="#代码工具" class="headerlink" title="代码工具"></a>代码工具</h3><h4 id="行内代码"><a href="#行内代码" class="headerlink" title="行内代码"></a>行内代码</h4><p>代码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">`这是行间代码`</span></span><br><span class="line"><span class="code">`This is inline code`</span></span><br><span class="line">在 Java 输出 Hello, world ：<span class="code">`System.out.print(&quot;Hello, World!&quot;);`</span></span><br><span class="line">在 Java 输出 Hello, world ：<span class="code">```System.out.print(&quot;Hello, World!&quot;);```</span></span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
+<p><code>这是行间代码</code><br><code>This is inline code</code><br>在 Java 输出 Hello, world ：<code>System.out.print(&quot;Hello, World!&quot;);</code><br>在 Java 输出 Hello, world ：<code>System.out.print(&quot;Hello, World!&quot;);</code></p>
+<h4 id="多行代码"><a href="#多行代码" class="headerlink" title="多行代码"></a>多行代码</h4><blockquote>
+<p>语法：<br>方法一：只需要每行都缩进 4 个空格即可<br>方法二：使用<code>`</code>框起来 </p>
+</blockquote>
+<p>示例一（方法一）：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// JQuery 的 Hello, world</span><br><span class="line">$(function()&#123;</span><br><span class="line">alert(&quot;Hello, world!&quot;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>效果：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JQuery 的 Hello, world</span></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">alert(<span class="string">&quot;Hello, world!&quot;</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>示例二（方法二）【/为转义字符忽略不计】：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; JQuery 的 Hello, world</span><br><span class="line">$(function()&#123;</span><br><span class="line">alert(&quot;Hello, world!&quot;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h4><p>在需要高亮的代码块的前一行及后一行使用三个反引号<code>`</code>，同时第一行反引号后面表面代码块所使用的语言。如下面一段代码：</p>
+<blockquote>
+<p>#include”iostream.h”<br>using namespace std;</p>
+<p>in main(){<br>   cout &lt;&lt; “Hello World”; // 输出 Hello World<br>   return 0;<br>}</p>
+</blockquote>
+<p>显示效果：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">in <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World&quot;</span>; <span class="comment">// 输出 Hello World</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>1.在Markdown的语法中，我们可以使用1.、2.表示有序列表，<br>即数字+点，不过注意序号和后面文字必须得有空格。<br>2.无序列表用“-”或者“<em>”表示，同样的，-和</em>和后年的文字间必须有空格。且通过按tab键可以实现列表的嵌套</p>
+<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>代码：<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> 这是无序列表</span><br><span class="line"><span class="bullet">-</span> 这是无序列表</span><br><span class="line"><span class="bullet">    -</span> 这是无序列表</span><br><span class="line"><span class="bullet">    -</span> 这是无序列表</span><br><span class="line"><span class="bullet">-</span> 这是无序列表</span><br><span class="line"><span class="bullet">-</span> 这是无序列表</span><br><span class="line"><span class="bullet">*</span> 这是无序列表</span><br><span class="line"><span class="bullet">*</span> 这是无序列表</span><br></pre></td></tr></table></figure><br>效果：</p>
 <ul>
 <li>这是无序列表</li>
 <li>这是无序列表<ul>
@@ -222,8 +41,7 @@
 <li>这是无序列表</li>
 <li>这是无序列表</li>
 </ul>
-<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>代码:<br><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-bullet">1. </span>这是有序列表</span><br><span class="line"><span class="hljs-bullet">2. </span>这是有序列表</span><br><span class="line"><span class="hljs-bullet">3. </span>这是有序列表</span><br><span class="line"><span class="hljs-bullet">4. </span>这是有序列表</span><br></pre></td></tr></table></figure></p>
-<p>效果：</p>
+<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>代码:<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1.</span> 这是有序列表</span><br><span class="line"><span class="bullet">2.</span> 这是有序列表</span><br><span class="line"><span class="bullet">3.</span> 这是有序列表</span><br><span class="line"><span class="bullet">4.</span> 这是有序列表</span><br></pre></td></tr></table></figure><br>效果：</p>
 <ol>
 <li>这是有序列表</li>
 <li>这是有序列表</li>
@@ -235,20 +53,17 @@
 <p>两个列表之间不能相邻，否则会解释为嵌套的列表<br>无序列表的项目符号可使用 <em>,+,- 效果是相同的。<br>列表与后续内容之间需要一个空行隔开，即：列表是一个段落<br>列表允许多层次嵌套<br>可以在项目中包含段落，只需将段落前添加一个 tab 或 4 个空格<br>区块标记：是指内容独占一块，需前后换行，不和其他标记共处一行的标记。<br>段落：即是一段连续的文字，可包含</em>、空格、换行、tab等字符。两个段落之间使用空行分隔。注意：换行不是分段的标识，空行才是.</p>
 </blockquote>
 <h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>Markdown中，用符号&gt;开启一行引用，如果文字有多行则用多个&gt;，同样地&gt;和文字间必须有空格。<br>这里补充一点：在Markdown中，空格+空格+Enter为换行，<br>而Enter为另起一段落，这在书写引用时是非常重要的</p>
-<p>代码：<br><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-quote">&gt; 这是引用  </span></span><br><span class="line"><span class="hljs-quote">&gt; 换行请按`空格+空格+Enter`  </span></span><br><span class="line"><span class="hljs-quote">&gt; 这是引用</span></span><br></pre></td></tr></table></figure></p>
-<p>效果：</p>
+<p>代码：<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 这是引用  </span></span><br><span class="line"><span class="quote">&gt; 换行请按`空格+空格+Enter`  </span></span><br><span class="line"><span class="quote">&gt; 这是引用</span></span><br></pre></td></tr></table></figure><br>效果：</p>
 <blockquote>
 <p>这是引用<br>换行请按<code>空格+空格+Enter</code><br>这是引用</p>
 </blockquote>
 <p>大于号 和 文字必须有一个空格<br>可以在每行之前加 &gt; ，也可以在段落之前加 1 个 &gt;<br>引用内部可以使用其他 Markdown 标记</p>
-<h3 id="链接（链接网址-图片）"><a href="#链接（链接网址-图片）" class="headerlink" title="链接（链接网址/图片）"></a>链接（链接网址/图片）</h3><h4 id="链接网址"><a href="#链接网址" class="headerlink" title="链接网址"></a>链接网址</h4><p>代码：<br><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="hljs-string"> 百度网址 </span>](<span class="hljs-link">https://www.baidu.com/</span>)</span><br></pre></td></tr></table></figure></p>
-<p>效果：<br><a href="https://www.baidu.com/" target="_blank" rel="noopener">百度网址</a></p>
-<h4 id="链接图片"><a href="#链接图片" class="headerlink" title="链接图片"></a>链接图片</h4><p>代码：<br><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![天气预报]（http://cdn.heweather.com/cond_icon/309.png）    </span><br><span class="line">备注：括号一定要是英文字符哦！</span><br></pre></td></tr></table></figure></p>
+<h3 id="链接（链接网址-图片）"><a href="#链接（链接网址-图片）" class="headerlink" title="链接（链接网址/图片）"></a>链接（链接网址/图片）</h3><h4 id="链接网址"><a href="#链接网址" class="headerlink" title="链接网址"></a>链接网址</h4><p>代码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string"> 百度网址 </span>](<span class="link">https://www.baidu.com/</span>)</span><br></pre></td></tr></table></figure><br>效果：<br><a target="_blank" rel="noopener" href="https://www.baidu.com/">百度网址</a></p>
+<h4 id="链接图片"><a href="#链接图片" class="headerlink" title="链接图片"></a>链接图片</h4><p>代码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![天气预报]（http://cdn.heweather.com/cond<span class="emphasis">_icon/309.png）    </span></span><br><span class="line"><span class="emphasis">备注：括号一定要是英文字符哦！</span></span><br></pre></td></tr></table></figure></p>
 <p>效果：<br><img src="http://cdn.heweather.com/cond_icon/309.png" alt="天气预报"></p>
-<h4 id="限制图片大小并居中"><a href="#限制图片大小并居中" class="headerlink" title="限制图片大小并居中"></a>限制图片大小并居中</h4><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">许多 MarkDown 编辑器中直接按原图大小显示图片，造成版面凌乱。  </span><br><span class="line">如何让图片像简书中那样大小一致居中显示呢？使用该命令  </span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"图片地址"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"图片显示宽度"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"显示高度"</span>  </span></span></span><br><span class="line"><span class="hljs-xml">alt="图片名称"/&gt;</span>设置图片大小，再用<span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">align</span>=<span class="hljs-string">center</span>&gt;</span></span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>命令包裹达到居中效果。</span><br></pre></td></tr></table></figure>
-<p>代码：<br><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">align</span>=<span class="hljs-string">center</span>&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"400"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"400"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"亦菲表演机器猫"</span>/&gt;</span></span></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>显示效果：</p>
-<div align="center"><br><img src="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif" width="400" height="400" alt="亦菲表演机器猫"><br></div>
+<h4 id="限制图片大小并居中"><a href="#限制图片大小并居中" class="headerlink" title="限制图片大小并居中"></a>限制图片大小并居中</h4><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">许多 MarkDown 编辑器中直接按原图大小显示图片，造成版面凌乱。  </span><br><span class="line">如何让图片像简书中那样大小一致居中显示呢？使用该命令  </span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片地址&quot;</span> <span class="attr">width</span>=<span class="string">&quot;图片显示宽度&quot;</span> <span class="attr">height</span>=<span class="string">&quot;显示高度&quot;</span>  </span></span></span><br><span class="line"><span class="xml">alt=&quot;图片名称&quot;/&gt;</span>设置图片大小，再用<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>命令包裹达到居中效果。</span><br></pre></td></tr></table></figure>
+<p>代码：<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif&quot;</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;400&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;亦菲表演机器猫&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure><br>显示效果：</p>
+<div align=center><br><img src="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif" width="400" height="400" alt="亦菲表演机器猫"/><br></div>
 
 
 <h3 id="Markdown和HTML的关系"><a href="#Markdown和HTML的关系" class="headerlink" title="Markdown和HTML的关系"></a>Markdown和HTML的关系</h3><p>HTML 是一种发布的格式，Markdown 是一种书写的格式。<br>Markdown 的格式语法只涵盖纯文本可以涵盖的范围。<br>在 Markdown 中可直接使用 HTML 标签，但需要注意：</p>
@@ -259,435 +74,61 @@
 <li>在 HTML 的区块标签中的 Markdown 标签是没有效果的</li>
 </ul>
 </blockquote>
-
-        </div>
-        
-            <ul class="post-copyright">
-            <li><strong>本文标题：</strong><a href="https://jinqiuyang.top/2019/04/28/learnMarkdown/">Markdown语法总结</a></li>
-            <li><strong>本文作者：</strong><a href="https://jinqiuyang.top">BurningCode</a></li>
-            <li><strong>本文链接：</strong><a href="https://jinqiuyang.top/2019/04/28/learnMarkdown/">https://jinqiuyang.top/2019/04/28/learnMarkdown/</a></li>
-            <li><strong>发布时间：</strong>2019-04-28</li>
-            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
-            </li>
-            </ul>
-        
-        
-        <hr style="height:1px;margin:1rem 0">
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <i class="fas fa-tags has-text-grey"></i>&nbsp;
-                    <a class="has-link-grey -link" href="/tags/Markdown/">Markdown</a>,&nbsp;<a class="has-link-grey -link" href="/tags/入门/">入门</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/31/java开发的自学之路/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Java开发的自学之路</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/04/25/hexobulidblog/">
-                <span class="level-item">利用hexo框架搭建blog并部署</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="valine-thread" class="content"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-    new Valine({
-        el: '#valine-thread' ,
-        notify: false,
-        verify: false,
-        app_id: 'Gxs5txGP2z6Ypi7xkX2wzcdm-gzGzoHsz',
-        app_key: 'PGjapsDlHlD942ByeOVYOeSQ',
-        placeholder: '欢迎一起交流讨论...'
-    });
-</script>
-
-    </div>
-</div>
-
-</div>
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <nav class="level" style="margin-bottom:1rem">
-            <div class="level-item has-text-centered">
-                <div>
-                    
-                        <img class="image is-96x96 has-mb-6" src="/images/avatar.jpg" alt="BurningCode">
-                    
-                    
-                    <p class="is-size-4 is-block">
-                        BurningCode
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-block">
-                        software engineer&amp;Developer
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
-                        <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span>Suzhou, China</span>
-                    </p>
-                    
-                </div>
-            </div>
-        </nav>
-        <nav class="level menu-list is-mobile" style="margin-bottom:1rem">
-            <div class="level-item has-text-centered is-marginless">
-                <a href="/archives/">
-                    <p class="heading">
-                        文章
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        11
-                    </p>
-                </a>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <a href="/categories/">
-                    <p class="heading">
-                        分类
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        7
-                    </p>
-                </a>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <a href="/tags/">
-                    <p class="heading">
-                        标签
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        11
-                    </p>
-                </a>
-            </div>
-        </nav>
-        <div class="level">
-            <a class="level-item button is-link is-rounded" href="https://github.com/BuRNIngsuperman" target="_blank">
-                <i class="fab fa-github"></i>&nbsp;&nbsp;关注我</a>
-        </div>
-        
-        
-    </div>
-</div>
-
-    
-        
-<div class="card widget column-left is-sticky" id="toc" style="max-height: 600px;overflow: auto">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#什么是Markdown">
-        <span class="has-mr-6">1</span>
-        <span>什么是Markdown</span>
-        </a></li><li>
-        <a class="is-flex" href="#Markdown使用语法总结">
-        <span class="has-mr-6">2</span>
-        <span>Markdown使用语法总结</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#标题">
-        <span class="has-mr-6">2.1</span>
-        <span>标题</span>
-        </a></li><li>
-        <a class="is-flex" href="#改变字体">
-        <span class="has-mr-6">2.2</span>
-        <span>改变字体</span>
-        </a></li><li>
-        <a class="is-flex" href="#分割线">
-        <span class="has-mr-6">2.3</span>
-        <span>分割线</span>
-        </a></li><li>
-        <a class="is-flex" href="#代码工具">
-        <span class="has-mr-6">2.4</span>
-        <span>代码工具</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#行内代码">
-        <span class="has-mr-6">2.4.1</span>
-        <span>行内代码</span>
-        </a></li><li>
-        <a class="is-flex" href="#多行代码">
-        <span class="has-mr-6">2.4.2</span>
-        <span>多行代码</span>
-        </a></li><li>
-        <a class="is-flex" href="#代码高亮">
-        <span class="has-mr-6">2.4.3</span>
-        <span>代码高亮</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#列表">
-        <span class="has-mr-6">2.5</span>
-        <span>列表</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#无序列表">
-        <span class="has-mr-6">2.5.1</span>
-        <span>无序列表</span>
-        </a></li><li>
-        <a class="is-flex" href="#有序列表">
-        <span class="has-mr-6">2.5.2</span>
-        <span>有序列表</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#引用">
-        <span class="has-mr-6">2.6</span>
-        <span>引用</span>
-        </a></li><li>
-        <a class="is-flex" href="#链接（链接网址-图片）">
-        <span class="has-mr-6">2.7</span>
-        <span>链接（链接网址/图片）</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#链接网址">
-        <span class="has-mr-6">2.7.1</span>
-        <span>链接网址</span>
-        </a></li><li>
-        <a class="is-flex" href="#链接图片">
-        <span class="has-mr-6">2.7.2</span>
-        <span>链接图片</span>
-        </a></li><li>
-        <a class="is-flex" href="#限制图片大小并居中">
-        <span class="has-mr-6">2.7.3</span>
-        <span>限制图片大小并居中</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#Markdown和HTML的关系">
-        <span class="has-mr-6">2.8</span>
-        <span>Markdown和HTML的关系</span>
-        </a></li></ul></li></ul>
-        </div>
-    </div>
-</div>
-
-
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen ">
-        
-        </div>
-    
-</div>
-
-                
-            </div>
-        </div>
-    </section>
-    <footer class="footer">
-    <div class="container">
-        <div class="level">
-            <div class="level-start has-text-centered-mobile">
-                <a class="footer-logo is-block has-mb-6" href="/">
-                
-                    <img src="/images/logo.svg" alt="Markdown语法总结" height="28">
-                
-                </a>
-                <p class="is-size-7">
-                &copy; 2021 BurningCode&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                
-                <br>
-                <span id="busuanzi_container_site_uv">
-                共<span id="busuanzi_value_site_uv">0</span>个访客
-                </span>
-                
-                </p>
-            </div>
-            <div class="level-end">
-            
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-                
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-                        
-                        <i class="fab fa-creative-commons"></i>&nbsp;<i class="fab fa-creative-commons-by"></i>&nbsp;<i class="fab fa-creative-commons-nc"></i>&nbsp;<i class="fab fa-creative-commons-sa"></i>&nbsp;
-                        
-                    </a>
-                </p>
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Burning GitHub" href="https://github.com/BuRNIngsuperman">
-                        
-                        <i class="fab fa-github"></i>&nbsp;
-                        
-                    </a>
-                </p>
-                
-                </div>
-            
-            </div>
-        </div>
-    </div>
-</footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-<script>moment.locale("zh-CN");</script>
-
-
-    
-    
-    
-    <script src="/js/animation.js"></script>
-    
-
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
-    <script src="/js/gallery.js" defer></script>
-    
-
-    
-    
-
-<div id="outdated">
-    <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
-            my browser now </a></p>
-    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        outdatedBrowser({
-            bgColor: '#f25648',
-            color: '#ffffff',
-            lowerThan: 'flex'
-        });
-    });
-</script>
-
-
-    
-    
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    MathJax.Hub.Config({
-        'HTML-CSS': {
-            matchFontHeight: false
-        },
-        SVG: {
-            matchFontHeight: false
-        },
-        CommonHTML: {
-            matchFontHeight: false
-        },
-        tex2jax: {
-            inlineMath: [
-                ['$','$'],
-                ['\\(','\\)']
-            ]
-        }
-    });
-});
-</script>
-
-    
-    
-
-<a id="back-to-top" title="回到顶端" href="javascript:;">
-    <i class="fas fa-chevron-up"></i>
-</a>
-<script src="/js/back-to-top.js" defer></script>
-
-
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
-    <script src="/js/clipboard.js" defer></script>
-    
-
-    
-    
-    
-
-    
-
-
-<script src="/js/main.js" defer></script>
-
-    
-    <div class="searchbox ins-search">
-    <div class="searchbox-container ins-search-container">
-        <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
-            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="searchbox-result-wrapper ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(无标题)',
-            },
-            CONTENT_URL: '/content.json',
+</div><div class="article-licensing box"><div class="licensing-title"><p>Markdown语法总结</p><p><a href="https://jinqiuyang.top/2019/04/28/learnMarkdown/">https://jinqiuyang.top/2019/04/28/learnMarkdown/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>BurningCode</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-04-28</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-01-07</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-nc"></i> <i class="fab fa-creative-commons-sa"></i> CC BY-NC-SA 4.0</a></p></div></div></div></div></div><hr style="height:1px;margin:1rem 0"><div class="level is-mobile is-flex"><div class="article-tags is-size-7 is-uppercase"><i class="fas fa-tags has-text-grey"></i> <a class="link-muted" rel="tag" href="/tags/Markdown/">Markdown, </a><a class="link-muted" rel="tag" href="/tags/%E5%85%A5%E9%97%A8/">入门 </a></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/08/31/java%E5%BC%80%E5%8F%91%E7%9A%84%E8%87%AA%E5%AD%A6%E4%B9%8B%E8%B7%AF/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Java开发的自学之路</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/04/25/hexobulidblog/"><span class="level-item">利用hexo框架搭建blog并部署</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://jinqiuyang.top/2019/04/28/learnMarkdown/';
+            this.page.identifier = '2019/04/28/learnMarkdown/';
         };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script src="/js/insight.js" defer></script>
-<link rel="stylesheet" href="/css/search.css">
-<link rel="stylesheet" href="/css/insight.css">
-    
-</body>
-</html>
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'alphalxy-blog' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level" style="margin-bottom:1rem"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-96x96 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="BurningCode"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">BurningCode</p><p class="is-size-6 is-block">Software Engineer&amp;Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Nanjing, China</span></p></div></div></nav><nav class="level menu-list is-mobile" style="margin-bottom:1rem"><a class="level-item has-text-centered is-marginless" href="/archives/"><div><p class="heading">文章</p><div><p class="title">11</p></div></div></a><a class="level-item has-text-centered is-marginless" href="/categories/"><div><p class="heading">分类</p><div><p class="title">7</p></div></div></a><a class="level-item has-text-centered is-marginless" href="/tags/"><div><p class="heading">标签</p><div><p class="title">11</p></div></div></a></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BuRNIngsuperman" target="_blank" rel="noopener"><i class="fab fa-github"></i>  关注我</a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#什么是Markdown"><span class="level-left"><span class="level-item">1</span><span class="level-item">什么是Markdown</span></span></a></li><li><a class="level is-mobile" href="#Markdown使用语法总结"><span class="level-left"><span class="level-item">2</span><span class="level-item">Markdown使用语法总结</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#标题"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">标题</span></span></a></li><li><a class="level is-mobile" href="#改变字体"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">改变字体</span></span></a></li><li><a class="level is-mobile" href="#分割线"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">分割线</span></span></a></li><li><a class="level is-mobile" href="#代码工具"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">代码工具</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#行内代码"><span class="level-left"><span class="level-item">2.4.1</span><span class="level-item">行内代码</span></span></a></li><li><a class="level is-mobile" href="#多行代码"><span class="level-left"><span class="level-item">2.4.2</span><span class="level-item">多行代码</span></span></a></li><li><a class="level is-mobile" href="#代码高亮"><span class="level-left"><span class="level-item">2.4.3</span><span class="level-item">代码高亮</span></span></a></li></ul></li><li><a class="level is-mobile" href="#列表"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">列表</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#无序列表"><span class="level-left"><span class="level-item">2.5.1</span><span class="level-item">无序列表</span></span></a></li><li><a class="level is-mobile" href="#有序列表"><span class="level-left"><span class="level-item">2.5.2</span><span class="level-item">有序列表</span></span></a></li></ul></li><li><a class="level is-mobile" href="#引用"><span class="level-left"><span class="level-item">2.6</span><span class="level-item">引用</span></span></a></li><li><a class="level is-mobile" href="#链接（链接网址-图片）"><span class="level-left"><span class="level-item">2.7</span><span class="level-item">链接（链接网址/图片）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#链接网址"><span class="level-left"><span class="level-item">2.7.1</span><span class="level-item">链接网址</span></span></a></li><li><a class="level is-mobile" href="#链接图片"><span class="level-left"><span class="level-item">2.7.2</span><span class="level-item">链接图片</span></span></a></li><li><a class="level is-mobile" href="#限制图片大小并居中"><span class="level-left"><span class="level-item">2.7.3</span><span class="level-item">限制图片大小并居中</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Markdown和HTML的关系"><span class="level-left"><span class="level-item">2.8</span><span class="level-item">Markdown和HTML的关系</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="BurningCode&#039;s Blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 BurningCode</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-nc"></i> <i class="fab fa-creative-commons-sa"></i> </a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="AlphaLxy GitHub" href="https://github.com/BuRNIngsuperman"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/katex.min.css"><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/katex.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

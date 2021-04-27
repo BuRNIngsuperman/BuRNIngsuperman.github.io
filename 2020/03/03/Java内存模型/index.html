@@ -1,192 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-<title>深入理解Java内存模型 - BurningCode&#39;s Blog</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-
-    <meta name="description" content="Java虚拟机中定义了一种Java内存模型(Java Memory Model, JMM)来屏蔽各种硬件和操作系统之间的内存访问差异，以实现让Java程序能够在各种平台下都能达到一致的内存访问效果，在此之前，主流程序语言（如C/C++等）直接使用物理硬件和操作系统的内存模型，因此会由于不同平台内存模型的差异，有可能导致程序在这一套平台运行完全正常，但是在另外一套平台上则会经常出错.">
-<meta name="keywords" content="JVM,JMM">
-<meta property="og:type" content="article">
-<meta property="og:title" content="深入理解Java内存模型">
-<meta property="og:url" content="https://jinqiuyang.top/2020/03/03/Java内存模型/index.html">
-<meta property="og:site_name" content="BurningCode&#39;s Blog">
-<meta property="og:description" content="Java虚拟机中定义了一种Java内存模型(Java Memory Model, JMM)来屏蔽各种硬件和操作系统之间的内存访问差异，以实现让Java程序能够在各种平台下都能达到一致的内存访问效果，在此之前，主流程序语言（如C/C++等）直接使用物理硬件和操作系统的内存模型，因此会由于不同平台内存模型的差异，有可能导致程序在这一套平台运行完全正常，但是在另外一套平台上则会经常出错.">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jinqiuyang.top/images/og_image.png">
-<meta property="og:updated_time" content="2020-03-03T03:27:30.091Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解Java内存模型">
-<meta name="twitter:description" content="Java虚拟机中定义了一种Java内存模型(Java Memory Model, JMM)来屏蔽各种硬件和操作系统之间的内存访问差异，以实现让Java程序能够在各种平台下都能达到一致的内存访问效果，在此之前，主流程序语言（如C/C++等）直接使用物理硬件和操作系统的内存模型，因此会由于不同平台内存模型的差异，有可能导致程序在这一套平台运行完全正常，但是在另外一套平台上则会经常出错.">
-<meta name="twitter:image" content="https://jinqiuyang.top/images/og_image.png">
-
-
-
-
-
-
-
-<link rel="icon" href="/images/favicon.svg">
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
-
-
-    
-    
-    
-    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
-    
-
-    
-    
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
-    
-
-    
-    
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
-
-
-    
-    
-    
-    
-
-<link rel="stylesheet" href="/css/back-to-top.css">
-
-
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-<link rel="stylesheet" href="/css/progressbar.css">
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
-    
-    
-    
-
-    
-    
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-
-    
-
-
-<link rel="stylesheet" href="/css/style.css">
-</head>
-<body class="is-3-column">
-    <nav class="navbar navbar-main">
-    <div class="container">
-        <div class="navbar-brand is-flex-center">
-            <a class="navbar-item navbar-logo" href="/">
-            
-                <img src="/images/logo.svg" alt="深入理解Java内存模型" height="28">
-            
-            </a>
-        </div>
-        <div class="navbar-menu">
-            
-            <div class="navbar-start">
-                
-                <a class="navbar-item" href="/">首页</a>
-                
-                <a class="navbar-item" href="/archives/">归档</a>
-                
-                <a class="navbar-item" href="/categories/">分类</a>
-                
-                <a class="navbar-item" href="/tags/">标签</a>
-                
-                <a class="navbar-item" href="/about/">关于</a>
-                
-            </div>
-            
-            <div class="navbar-end">
-                
-                    
-                    
-                    <a class="navbar-item" target="_blank" title="BurningCode GitHub" href="https://github.com/BuRNIngsuperman">
-                        
-                        <i class="fab fa-github"></i>
-                        
-                    </a>
-                    
-                
-                
-                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                
-                
-                <a class="navbar-item search" title="搜索" href="javascript:;">
-                    <i class="fas fa-search"></i>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</nav>
-    
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-content article ">
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <i class="fas fa-angle-double-right"></i>深入理解Java内存模型
-            
-        </h1>
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-03T03:17:23.000Z"><i class="far fa-calendar-alt">&nbsp;</i>2020-03-03</time>
-                
-                <time class="level-item has-text-grey is-hidden-mobile" datetime="2020-03-03T03:27:30.091Z"><i class="far fa-calendar-check">&nbsp;</i>2020-03-03</time>
-                
-                
-                <div class="level-item">
-                <i class="far fa-folder-open has-text-grey"></i>&nbsp;
-                <a class="has-link-grey -link" href="/categories/JVM/">JVM</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    <i class="far fa-clock"></i>&nbsp;
-                    
-                    
-                    25 分钟 读完 (大约 3763 个字)
-                </span>
-                
-                
-                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
-                    <i class="far fa-eye"></i>
-                    <span id="busuanzi_value_page_pv">0</span>次访问
-                </span>
-                
-            </div>
-        </div>
-        
-        <div class="content">
-            <p>Java虚拟机中定义了一种Java内存模型(Java Memory Model, JMM)来屏蔽各种硬件和操作系统之间的内存访问差异，以实现让Java程序能够在各种平台下都能达到一致的内存访问效果，在此之前，主流程序语言（如C/C++等）直接使用物理硬件和操作系统的内存模型，因此会由于不同平台内存模型的差异，有可能导致程序在这一套平台运行完全正常，但是在另外一套平台上则会经常出错.<a id="more"></a></p>
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>深入理解Java内存模型 - BurningCode&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BurningCode&#039;s Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BurningCode&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Java虚拟机中定义了一种Java内存模型(Java Memory Model, JMM)来屏蔽各种硬件和操作系统之间的内存访问差异，以实现让Java程序能够在各种平台下都能达到一致的内存访问效果，在此之前，主流程序语言（如C&amp;#x2F;C++等）直接使用物理硬件和操作系统的内存模型，因此会由于不同平台内存模型的差异，有可能导致程序在这一套平台运行完全正常，但是在另外一套平台上则会经常出错."><meta property="og:type" content="blog"><meta property="og:title" content="深入理解Java内存模型"><meta property="og:url" content="https://jinqiuyang.top/2020/03/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/"><meta property="og:site_name" content="BurningCode&#039;s Blog"><meta property="og:description" content="Java虚拟机中定义了一种Java内存模型(Java Memory Model, JMM)来屏蔽各种硬件和操作系统之间的内存访问差异，以实现让Java程序能够在各种平台下都能达到一致的内存访问效果，在此之前，主流程序语言（如C&amp;#x2F;C++等）直接使用物理硬件和操作系统的内存模型，因此会由于不同平台内存模型的差异，有可能导致程序在这一套平台运行完全正常，但是在另外一套平台上则会经常出错."><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/Java内存模型.PNG"><meta property="article:published_time" content="2020-03-03T03:17:23.000Z"><meta property="article:modified_time" content="2020-03-03T03:27:30.091Z"><meta property="article:author" content="BurningCode"><meta property="article:tag" content="JVM"><meta property="article:tag" content="JMM"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/Java内存模型.PNG"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jinqiuyang.top/2020/03/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/"},"headline":"BurningCode's Blog","image":[],"datePublished":"2020-03-03T03:17:23.000Z","dateModified":"2020-03-03T03:27:30.091Z","author":{"@type":"Person","name":"BurningCode"},"description":"Java虚拟机中定义了一种Java内存模型(Java Memory Model, JMM)来屏蔽各种硬件和操作系统之间的内存访问差异，以实现让Java程序能够在各种平台下都能达到一致的内存访问效果，在此之前，主流程序语言（如C&#x2F;C++等）直接使用物理硬件和操作系统的内存模型，因此会由于不同平台内存模型的差异，有可能导致程序在这一套平台运行完全正常，但是在另外一套平台上则会经常出错."}</script><link rel="canonical" href="https://jinqiuyang.top/2020/03/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="BurningCode&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives/">归档</a><a class="navbar-item" href="/categories/">分类</a><a class="navbar-item" href="/tags/">标签</a><a class="navbar-item" href="/about/">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="AlphaLxy GitHub" href="https://github.com/BuRNIngsuperman"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>深入理解Java内存模型</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2020-03-03</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2020-03-03</time></span><span class="level-item"><i class="far fa-folder-open has-text-grey"></i> <a class="link-muted" href="/categories/JVM/">JVM</a></span><span class="level-item"><i class="far fa-clock"></i> 25 分钟读完 (大约3763个字)</span><span class="level-item" id="busuanzi_container_page_pv"><i class="far fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><p>Java虚拟机中定义了一种Java内存模型(Java Memory Model, JMM)来屏蔽各种硬件和操作系统之间的内存访问差异，以实现让Java程序能够在各种平台下都能达到一致的内存访问效果，在此之前，主流程序语言（如C/C++等）直接使用物理硬件和操作系统的内存模型，因此会由于不同平台内存模型的差异，有可能导致程序在这一套平台运行完全正常，但是在另外一套平台上则会经常出错.<span id="more"></span></p>
 <p>Java内存模型的主要目的是定义程序中各个变量的访问规则，即在虚拟机中将变量存储到内存和从内存中取出变量这样的底层细节。此时的变量与Java变成之中的变量有所区别，它包括了实例字段、静态字段和构成数组对象的元素，但是不包括局部变量与方法变量，因为后者是线程私有的。</p>
 <h2 id="并发模型的实质"><a href="#并发模型的实质" class="headerlink" title="并发模型的实质"></a>并发模型的实质</h2><p>Java内存模型围绕着并发过程中如何处理原子性、可见性和顺序性这三个特征来设计的。</p>
 <h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>有Java内存模型来直接保证原子性的变量操作包括read、load、use、assign、store、write这六个动作，虽然存在这long和double的特例，但是基本上可以忽略不计，目前虚拟机基本上都对其实现了原子性。如果想要求更大范围的控制，lock和unlock也可以满足需求。尽管虚拟机未把lock和unlock的操作直接开放给用户，但是提供了更高级的字节码命令monitorenter和monitorexit来隐式地使用这两个操作，对应到Java代码中就是同步块—-synchronized关键字，因此在synchronized块之间操作具有原子性。</p>
@@ -202,7 +15,7 @@
 <blockquote>
 <p>主内存、工作内存和Java内存区域中的Java堆、虚拟机栈、方法区并不是一个层次上的内存划分。上文注释便于理解做的类比。</p>
 </blockquote>
-<p><img src="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/Java内存模型.PNG" alt></p>
+<p><img src="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/Java内存模型.PNG" alt=""></p>
 <h3 id="工作内存和主内存之间的交互"><a href="#工作内存和主内存之间的交互" class="headerlink" title="工作内存和主内存之间的交互"></a>工作内存和主内存之间的交互</h3><p>物理机高速缓存和主内存之间的交互有协议，同样的，java内存中线程的工作内存和主内存的交互是由java虚拟机定义了如下的8种操作来完成的，每种操作必须是原子性的(double和long类型在某些平台有例外）。<br> java虚拟机中主内存和工作内存交互，就是一个变量如何从主内存传输到工作内存中，如何把修改后的变量从工作内存同步回主内存。</p>
 <ul>
 <li><strong>lock(锁定)</strong>:作用于主内存的变量，一个变量在同一时间只能一个线程锁定，该操作表示这条线成独占这个变量</li>
@@ -235,403 +48,61 @@
 <p>总结上面三条规则，前面两条可以概括为：<strong>volatile类型的变量保证对所有线程的可见性</strong>。第三条为：<strong>volatile类型的变量禁止指令重排序优化</strong>。</p>
 <h2 id="long和double变量的特殊规则"><a href="#long和double变量的特殊规则" class="headerlink" title="long和double变量的特殊规则"></a>long和double变量的特殊规则</h2><p>Java内存模型要求对主内存和工作内存交换的八个动作是原子的，正如章节开头所讲，对long和double有一些特殊规则。八个动作中lock、unlock、read、load、use、assign、store、write对待32位的基本数据类型都是原子操作，</p>
 <p>对待long和double这两个64位的数据，java虚拟机规范对java内存模型的规定中特别定义了一条相对宽松的规则：<strong>允许虚拟机将没有被volatile修饰的64位数据的读写操作划分为两次32位的操作来进行</strong>，也就是允许虚拟机不保证对64位数据的read、load、store和write这4个动作的操作是原子的。这也就是我们常说的long和double的非原子性协定(Nonautomic Treatment of double and long Variables)。</p>
-
-        </div>
-        
-            <ul class="post-copyright">
-            <li><strong>本文标题：</strong><a href="https://jinqiuyang.top/2020/03/03/Java内存模型/">深入理解Java内存模型</a></li>
-            <li><strong>本文作者：</strong><a href="https://jinqiuyang.top">BurningCode</a></li>
-            <li><strong>本文链接：</strong><a href="https://jinqiuyang.top/2020/03/03/Java内存模型/">https://jinqiuyang.top/2020/03/03/Java内存模型/</a></li>
-            <li><strong>发布时间：</strong>2020-03-03</li>
-            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
-            </li>
-            </ul>
-        
-        
-        <hr style="height:1px;margin:1rem 0">
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <i class="fas fa-tags has-text-grey"></i>&nbsp;
-                    <a class="has-link-grey -link" href="/tags/JMM/">JMM</a>,&nbsp;<a class="has-link-grey -link" href="/tags/JVM/">JVM</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/03/03/链表、栈与队列/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">链表、栈与队列</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/12/01/Jsp与Tomcat入门/">
-                <span class="level-item">JSP就是这么简单（入门篇）</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="valine-thread" class="content"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-    new Valine({
-        el: '#valine-thread' ,
-        notify: false,
-        verify: false,
-        app_id: 'Gxs5txGP2z6Ypi7xkX2wzcdm-gzGzoHsz',
-        app_key: 'PGjapsDlHlD942ByeOVYOeSQ',
-        placeholder: '欢迎一起交流讨论...'
-    });
-</script>
-
-    </div>
-</div>
-
-</div>
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <nav class="level" style="margin-bottom:1rem">
-            <div class="level-item has-text-centered">
-                <div>
-                    
-                        <img class="image is-96x96 has-mb-6" src="/images/avatar.jpg" alt="BurningCode">
-                    
-                    
-                    <p class="is-size-4 is-block">
-                        BurningCode
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-block">
-                        software engineer&amp;Developer
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
-                        <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span>Suzhou, China</span>
-                    </p>
-                    
-                </div>
-            </div>
-        </nav>
-        <nav class="level menu-list is-mobile" style="margin-bottom:1rem">
-            <div class="level-item has-text-centered is-marginless">
-                <a href="/archives/">
-                    <p class="heading">
-                        文章
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        11
-                    </p>
-                </a>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <a href="/categories/">
-                    <p class="heading">
-                        分类
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        7
-                    </p>
-                </a>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <a href="/tags/">
-                    <p class="heading">
-                        标签
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        11
-                    </p>
-                </a>
-            </div>
-        </nav>
-        <div class="level">
-            <a class="level-item button is-link is-rounded" href="https://github.com/BuRNIngsuperman" target="_blank">
-                <i class="fab fa-github"></i>&nbsp;&nbsp;关注我</a>
-        </div>
-        
-        
-    </div>
-</div>
-
-    
-        
-<div class="card widget column-left is-sticky" id="toc" style="max-height: 600px;overflow: auto">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                目录
-            </h3>
-            <ul class="menu-list"><li>
-        <a class="is-flex" href="#并发模型的实质">
-        <span class="has-mr-6">1</span>
-        <span>并发模型的实质</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#原子性">
-        <span class="has-mr-6">1.1</span>
-        <span>原子性</span>
-        </a></li><li>
-        <a class="is-flex" href="#可见性">
-        <span class="has-mr-6">1.2</span>
-        <span>可见性</span>
-        </a></li><li>
-        <a class="is-flex" href="#有序性">
-        <span class="has-mr-6">1.3</span>
-        <span>有序性</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#Java内存模型的概念">
-        <span class="has-mr-6">2</span>
-        <span>Java内存模型的概念</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#主内存">
-        <span class="has-mr-6">2.1</span>
-        <span>主内存</span>
-        </a></li><li>
-        <a class="is-flex" href="#工作内存">
-        <span class="has-mr-6">2.2</span>
-        <span>工作内存</span>
-        </a></li><li>
-        <a class="is-flex" href="#工作内存和主内存之间的交互">
-        <span class="has-mr-6">2.3</span>
-        <span>工作内存和主内存之间的交互</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#volatile修饰的变量的特殊规则">
-        <span class="has-mr-6">3</span>
-        <span>volatile修饰的变量的特殊规则</span>
-        </a></li><li>
-        <a class="is-flex" href="#long和double变量的特殊规则">
-        <span class="has-mr-6">4</span>
-        <span>long和double变量的特殊规则</span>
-        </a></li></ul>
-        </div>
-    </div>
-</div>
-
-
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen ">
-        
-        </div>
-    
-</div>
-
-                
-            </div>
-        </div>
-    </section>
-    <footer class="footer">
-    <div class="container">
-        <div class="level">
-            <div class="level-start has-text-centered-mobile">
-                <a class="footer-logo is-block has-mb-6" href="/">
-                
-                    <img src="/images/logo.svg" alt="深入理解Java内存模型" height="28">
-                
-                </a>
-                <p class="is-size-7">
-                &copy; 2021 BurningCode&nbsp;
-                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                
-                <br>
-                <span id="busuanzi_container_site_uv">
-                共<span id="busuanzi_value_site_uv">0</span>个访客
-                </span>
-                
-                </p>
-            </div>
-            <div class="level-end">
-            
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-                
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
-                        
-                        <i class="fab fa-creative-commons"></i>&nbsp;<i class="fab fa-creative-commons-by"></i>&nbsp;<i class="fab fa-creative-commons-nc"></i>&nbsp;<i class="fab fa-creative-commons-sa"></i>&nbsp;
-                        
-                    </a>
-                </p>
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Burning GitHub" href="https://github.com/BuRNIngsuperman">
-                        
-                        <i class="fab fa-github"></i>&nbsp;
-                        
-                    </a>
-                </p>
-                
-                </div>
-            
-            </div>
-        </div>
-    </div>
-</footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-<script>moment.locale("zh-CN");</script>
-
-
-    
-    
-    
-    <script src="/js/animation.js"></script>
-    
-
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
-    <script src="/js/gallery.js" defer></script>
-    
-
-    
-    
-
-<div id="outdated">
-    <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
-            my browser now </a></p>
-    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        outdatedBrowser({
-            bgColor: '#f25648',
-            color: '#ffffff',
-            lowerThan: 'flex'
-        });
-    });
-</script>
-
-
-    
-    
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    MathJax.Hub.Config({
-        'HTML-CSS': {
-            matchFontHeight: false
-        },
-        SVG: {
-            matchFontHeight: false
-        },
-        CommonHTML: {
-            matchFontHeight: false
-        },
-        tex2jax: {
-            inlineMath: [
-                ['$','$'],
-                ['\\(','\\)']
-            ]
-        }
-    });
-});
-</script>
-
-    
-    
-
-<a id="back-to-top" title="回到顶端" href="javascript:;">
-    <i class="fas fa-chevron-up"></i>
-</a>
-<script src="/js/back-to-top.js" defer></script>
-
-
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
-    <script src="/js/clipboard.js" defer></script>
-    
-
-    
-    
-    
-
-    
-
-
-<script src="/js/main.js" defer></script>
-
-    
-    <div class="searchbox ins-search">
-    <div class="searchbox-container ins-search-container">
-        <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么...">
-            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="searchbox-result-wrapper ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(无标题)',
-            },
-            CONTENT_URL: '/content.json',
+</div><div class="article-licensing box"><div class="licensing-title"><p>深入理解Java内存模型</p><p><a href="https://jinqiuyang.top/2020/03/03/Java内存模型/">https://jinqiuyang.top/2020/03/03/Java内存模型/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>BurningCode</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-03-03</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-03-03</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-nc"></i> <i class="fab fa-creative-commons-sa"></i> CC BY-NC-SA 4.0</a></p></div></div></div></div></div><hr style="height:1px;margin:1rem 0"><div class="level is-mobile is-flex"><div class="article-tags is-size-7 is-uppercase"><i class="fas fa-tags has-text-grey"></i> <a class="link-muted" rel="tag" href="/tags/JVM/">JVM, </a><a class="link-muted" rel="tag" href="/tags/JMM/">JMM </a></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/03/03/%E9%93%BE%E8%A1%A8%E3%80%81%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">链表、栈与队列</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/12/01/Jsp%E4%B8%8ETomcat%E5%85%A5%E9%97%A8/"><span class="level-item">JSP就是这么简单（入门篇）</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://jinqiuyang.top/2020/03/03/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/';
+            this.page.identifier = '2020/03/03/Java内存模型/';
         };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script src="/js/insight.js" defer></script>
-<link rel="stylesheet" href="/css/search.css">
-<link rel="stylesheet" href="/css/insight.css">
-    
-</body>
-</html>
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'alphalxy-blog' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level" style="margin-bottom:1rem"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-96x96 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="BurningCode"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">BurningCode</p><p class="is-size-6 is-block">Software Engineer&amp;Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Nanjing, China</span></p></div></div></nav><nav class="level menu-list is-mobile" style="margin-bottom:1rem"><a class="level-item has-text-centered is-marginless" href="/archives/"><div><p class="heading">文章</p><div><p class="title">11</p></div></div></a><a class="level-item has-text-centered is-marginless" href="/categories/"><div><p class="heading">分类</p><div><p class="title">7</p></div></div></a><a class="level-item has-text-centered is-marginless" href="/tags/"><div><p class="heading">标签</p><div><p class="title">11</p></div></div></a></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BuRNIngsuperman" target="_blank" rel="noopener"><i class="fab fa-github"></i>  关注我</a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#并发模型的实质"><span class="level-left"><span class="level-item">1</span><span class="level-item">并发模型的实质</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#原子性"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">原子性</span></span></a></li><li><a class="level is-mobile" href="#可见性"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">可见性</span></span></a></li><li><a class="level is-mobile" href="#有序性"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">有序性</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Java内存模型的概念"><span class="level-left"><span class="level-item">2</span><span class="level-item">Java内存模型的概念</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#主内存"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">主内存</span></span></a></li><li><a class="level is-mobile" href="#工作内存"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">工作内存</span></span></a></li><li><a class="level is-mobile" href="#工作内存和主内存之间的交互"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">工作内存和主内存之间的交互</span></span></a></li></ul></li><li><a class="level is-mobile" href="#volatile修饰的变量的特殊规则"><span class="level-left"><span class="level-item">3</span><span class="level-item">volatile修饰的变量的特殊规则</span></span></a></li><li><a class="level is-mobile" href="#long和double变量的特殊规则"><span class="level-left"><span class="level-item">4</span><span class="level-item">long和double变量的特殊规则</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="BurningCode&#039;s Blog" height="28"></a><p class="is-size-7"><span>&copy; 2021 BurningCode</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-nc"></i> <i class="fab fa-creative-commons-sa"></i> </a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="AlphaLxy GitHub" href="https://github.com/BuRNIngsuperman"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/katex.min.css"><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/katex.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
