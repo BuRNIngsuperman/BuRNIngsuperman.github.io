@@ -3,9 +3,8 @@ title: 深入理解Java内存模型
 date: 2020-03-03 11:17:23
 tags:
     - JVM
-    - JMM
 categories:
-    - JVM
+    - Java
 ---
 
 
