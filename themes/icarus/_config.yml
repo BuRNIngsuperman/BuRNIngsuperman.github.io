@@ -106,7 +106,7 @@ navbar:
         关于: /about/
     # Links to be shown on the right of the navigation bar
     links:
-        AlphaLxy GitHub:
+        BurningCode GitHub:
             icon: fab fa-github
             url: 'https://github.com/BuRNIngsuperman'
 # Page footer configurations
@@ -120,7 +120,7 @@ footer:
               - fab fa-creative-commons-nc
               - fab fa-creative-commons-sa
             url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
-        AlphaLxy GitHub:
+        BurningCode GitHub:
             icon: fab fa-github
             url: 'https://github.com/BuRNIngsuperman'
 # Article related configurations
@@ -154,9 +154,9 @@ search:
 # Comment plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
 comment:
-    type: disqus
-    # Disqus shortname
-    shortname: alphalxy-blog
+    type: changyan
+    app_id: cywdKT2Y0
+    conf: prod_d23d24c80d839ff226d7e06812baa80d
 # Donate plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
 # donates:
@@ -233,12 +233,12 @@ widgets:
         follow_link: 'https://github.com/BuRNIngsuperman'
         # Links to be shown on the bottom of the profile widget
         social_links:
-            # Github:
-            #     icon: fab fa-github
-            #     url: 'https://github.com/ppoffice'
-            # Facebook:
-            #     icon: fab fa-facebook
-            #     url: 'https://facebook.com'
+            Github:
+                icon: fab fa-github
+                url: 'https://github.com/BuRNIngsuperman'
+            Email:
+                icon: fa fa-envelope
+                url: 'jinqiuyang1107@foxmail.com'
             # Twitter:
             #     icon: fab fa-twitter
             #     url: 'https://twitter.com'
@@ -347,7 +347,7 @@ plugins:
         # URL to your site's cookie policy
         policyLink: 'https://www.cookiesandyou.com/'
     # Enable the lightGallery and Justified Gallery plugins
-    gallery: true
+    gallery: false
     # Google Analytics plugin settings
     # https://analytics.google.com
     google_analytics:
