@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>SQL查询语句与更新语句的执行 - BurningCode&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="BurningCode&#039;s Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BurningCode&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="查询语句查询语句如下:"><meta property="og:type" content="blog"><meta property="og:title" content="SQL查询语句与更新语句的执行"><meta property="og:url" content="https://jinqiuyang.top/2022/03/02/MySQL1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E5%92%8C%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C/"><meta property="og:site_name" content="BurningCode&#039;s Blog"><meta property="og:description" content="查询语句查询语句如下:"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/20220818172405.png"><meta property="og:image" content="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/20220818172444.png"><meta property="article:published_time" content="2022-03-02T05:00:36.000Z"><meta property="article:modified_time" content="2022-08-18T09:25:01.374Z"><meta property="article:author" content="BurningCode"><meta property="article:tag" content="MySQL"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/20220818172405.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jinqiuyang.top/2022/03/02/MySQL1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E5%92%8C%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C/"},"headline":"BurningCode's Blog","image":["https://burningblog.oss-cn-shanghai.aliyuncs.com/img/20220818172405.png","https://burningblog.oss-cn-shanghai.aliyuncs.com/img/20220818172444.png"],"datePublished":"2022-03-02T05:00:36.000Z","dateModified":"2022-08-18T09:25:01.374Z","author":{"@type":"Person","name":"BurningCode"},"description":"查询语句查询语句如下:"}</script><link rel="canonical" href="https://jinqiuyang.top/2022/03/02/MySQL1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E5%92%8C%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%89%A7%E8%A1%8C/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="BurningCode&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives/">归档</a><a class="navbar-item" href="/categories/">分类</a><a class="navbar-item" href="/tags/">标签</a><a class="navbar-item" href="/about/">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="BurningCode GitHub" href="https://github.com/BuRNIngsuperman"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>SQL查询语句与更新语句的执行</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2022-03-02</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-08-18</time></span><span class="level-item"><i class="far fa-folder-open has-text-grey"></i> <a class="link-muted" href="/categories/MySQL/">MySQL</a></span><span class="level-item"><i class="far fa-clock"></i> 13 分钟读完 (大约1997个字)</span><span class="level-item" id="busuanzi_container_page_pv"><i class="far fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><h2 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h2><p>查询语句如下:<br> <span id="more"></span></p>
+<p><img src="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/20220818172405.png" alt="MySQL查询语句"></p>
+<h2 id="更新语句"><a href="#更新语句" class="headerlink" title="更新语句"></a>更新语句</h2><p>与查询语句不同的是，更新语句语句会涉及三个重要的日志模块：redolog（重做日志）、undolog（回滚日志）和binlog（归档日志）。</p>
+<h3 id="三大日志文件"><a href="#三大日志文件" class="headerlink" title="三大日志文件"></a>三大日志文件</h3><h4 id="redolog"><a href="#redolog" class="headerlink" title="redolog"></a>redolog</h4><p>为了减少系统CPU执行和磁盘读写速度之间的鸿沟，减少磁盘读写速度慢对数据库性能的影响，数据库设计了缓冲池技术，数据库在执行读取数据的操作时，会首先将从数据库中读取的页放在内存的缓冲池中，下一次读取相同的数据时，首先在缓冲区判断数据是否命中，否则则去读取磁盘数据。执行修改操作时也是首先去修改在缓冲池中的页，再以一定频率刷新回磁盘。磁盘刷新的话是以一种checkpoint机制执行的，从而减少刷新页带来的数据库性能影响。</p>
+<p>缓冲池中的页刷新不是用朴素的LRU算法进行刷新的，而是将新访问的页放在midpoint位置。这是为了在某些数据或者索引扫面的数据库操作中，极有可能将所需要的热点数据从磁盘上移出，导致下次访问时再次访问磁盘。</p>
+<p>但是数据库修改数据先写入内存会出现问题，如果从缓冲池将页的新版本数据（即脏页）刷回磁盘中发生宕机，那么数据就没法恢复，所以事务数据系统一般采用WAL(Write Ahead Log)策略，先写redolog，再修改页，这个时候数据库更新就算完成了。</p>
+<blockquote>
+<p>解释下为什么写入数据页缓存池为什么又要加上写入redolog日志文件缓存，因为直接写入数据页缓存池的IO操作是随机读写IO，而写入redolog日志文件缓存及磁盘文件则是按顺序进行IO读写，同时日志缓存同步写入日志文件中也是顺序IO读写，IO读写效率大大提升</p>
+</blockquote>
+<blockquote>
+<p>这里可以把MySQL和Redis做一下类比。 MySQL的redo log 是WAL，先写日志（redolog也在磁盘，不过是顺序IO），后再找机会持久化随机IO写回到磁盘。 Redis是AOF，因为他是内存数据库，所以他先做存储（直接更新写入内存），然后再持久化到AOF日志文件。 这两者本质上都是想先以性能消耗最低的方式完成记录操作，MySQL是把随机IO优化成顺序IO优先记录到日志文件中；Redis基于内存数据库先天优势，直接写入内存，后面再持久化到AOF。</p>
+</blockquote>
+<p>checkpoint机制主要解决下面几个问题:</p>
+<ul>
+<li>缩短数据的恢复时间</li>
+<li>缓冲池不够用时，将脏页刷新到磁盘</li>
+<li>redolog不够用时，刷新脏页。</li>
+</ul>
+<p>redolog是否保证写入磁盘？</p>
+<blockquote>
+<p>答： redolog有三种刷盘机制，只要由innodb_flush_log-at-trx-commit参数设置，分别为0【延迟写】1【实时写、实时刷】和2【实时写、延迟刷】只有1能保证写入磁盘。其他两种都会存在1秒的丢失数据的可能。</p>
+</blockquote>
+<blockquote>
+<p>此外 redolog把随机IO变为顺序IO，极大地提高了读写IO效率。</p>
+</blockquote>
+<p>有了 redo log，InnoDB 就可以保证即使数据库发生异常重启，之前提交的记录都不会丢失，这个能力称为 <strong>crash-safe</strong>。</p>
+<h4 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h4><p>MySQL从整体上看其实有两块：一块是Server层功能层面的事情；还有一块是存储层，主要做的是存储层面的事情。Server层binlog（归档日志）记录MySQL数据库执行更改的所有操作。</p>
+<p>与redolog的区别</p>
+<ol>
+<li>redolog是物理日志，记录的是在某个数据页上做了什么修改，他是基于内存page的。而binlog是逻辑日志，记录了是数据库行记录做了什么修改，有三种存储格式。</li>
+<li>redolog大小是固定的，是循环写入的。空间用完会覆盖。binlog是追加写的，追加写是指binlog文件在写完一个文件后会切换到下一个文件继续写，不会覆盖之前的日志文件。</li>
+</ol>
+<p>binlog文件的作用有以下几种：</p>
+<ol>
+<li>恢复</li>
+<li>复制</li>
+<li>审计</li>
+</ol>
+<p>binlog有三种模式，statement 格式的话是记sql语句， row格式会记录行的内容，记两条，更新前和更新后都有。一般使用row格式，因为遇到时间，从库可能会出现不一致的情况，但是row更新前后都有，会导致日志变大。还有一种mix模式，结合了statement和row格式的有点</p>
+<h4 id="undolog"><a href="#undolog" class="headerlink" title="undolog"></a>undolog</h4><p>数据库执行修改操作还会涉及一个日志文件：undolog（重做文件）。用户执行的事务和语句由于某种原因失败了，又或者用户用一条ROLLBACK语句请求回滚吗，就可以利用这些undo信息进行数据回滚。</p>
+<p>在InnoDB存储引擎中，undolog分为1. Insert undolog 2. update undolog两种文件。</p>
+<h3 id="更新语句-1"><a href="#更新语句-1" class="headerlink" title="更新语句"></a>更新语句</h3><p>update语句执行流程如下所示:</p>
+<p><img src="https://burningblog.oss-cn-shanghai.aliyuncs.com/img/20220818172444.png" alt="MySQL更新语句"></p>
+<p>从上图可以看到，MySQL的更新操作将redolog的写入拆成两个步骤:prepare 和 commit，这就是”两阶段提交”。</p>
+<p>这样在数据亏发生crash时，可以进行安全的数据恢复。</p>
+<blockquote>
+<p>数据库的数据恢复方法：</p>
+<p>当需要恢复到指定的某一秒时，比如某天下午两点发现中午十二点有一次误删表，需要找回数据，那你可以这么做：</p>
+<p>首先，找到最近的一次全量备份，如果你运气好，可能就是昨天晚上的一个备份，从这个备份恢复到临时库。</p>
+<p>然后，从备份的时间点开始，将备份的 binlog 依次取出来，重放到中午误删表之前的那个时刻。</p>
+</blockquote>
+<p>此外除了数据库数据恢复操作外，还有当数据库主从集群需要扩容时，也就是需要再多搭建一些备库来增加系统的读能力的时候，现在常见的做法也是用全量备份加上应用 binlog 来实现的，这个的“不一致”就会导致你的线上出现主从数据库不一致的情况。</p>
+<p>所以，为什么要有两段式提交呢，这是为了让redolog和undolog的日志之间的逻辑一致，如果不使用两阶段提交。那么数据库的状态就有可能和用它的日志恢复出来的库状态不一致。</p>
+<h2 id="小节"><a href="#小节" class="headerlink" title="小节"></a>小节</h2><p>redo log 用于保证 crash-safe 能力。innodb_flush_log_at_trx_commit 这个参数设置成 1 的时候，表示每次事务的 redo log 都直接持久化到磁盘。这个参数我建议你设置成 1，这样可以保证 MySQL 异常重启之后数据不丢失。</p>
+<p>sync_binlog 这个参数设置成 1 的时候，表示每次事务的 binlog 都持久化到磁盘。这个参数我也建议你设置成 1，这样可以保证 MySQL 异常重启之后 binlog 不丢失。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>SQL查询语句与更新语句的执行</p><p><a href="https://jinqiuyang.top/2022/03/02/MySQL1-数据库查询和更新语句的执行/">https://jinqiuyang.top/2022/03/02/MySQL1-数据库查询和更新语句的执行/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>BurningCode</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2022-03-02</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-08-18</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-nc"></i> <i class="fab fa-creative-commons-sa"></i> CC BY-NC-SA 4.0</a></p></div></div></div></div></div><hr style="height:1px;margin:1rem 0"><div class="level is-mobile is-flex"><div class="article-tags is-size-7 is-uppercase"><i class="fas fa-tags has-text-grey"></i> <a class="link-muted" rel="tag" href="/tags/MySQL/">MySQL </a></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/03/03/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Object/"><span class="level-item">深入理解Object</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="SOHUCS" sid="2022/03/02/MySQL1-数据库查询和更新语句的执行/"></div><script charset="utf-8" src="https://changyan.sohu.com/upload/changyan.js"></script><script>window.changyan.api.config({appid: 'cywdKT2Y0',conf: 'prod_d23d24c80d839ff226d7e06812baa80d'});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level" style="margin-bottom:1rem"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-96x96 mx-auto mb-2"><img class="avatar" src="/img/avatar.jpg" alt="BurningCode"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">BurningCode</p><p class="is-size-6 is-block">Software Engineer&amp;Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Nanjing, China</span></p></div></div></nav><nav class="level menu-list is-mobile" style="margin-bottom:1rem"><a class="level-item has-text-centered is-marginless" href="/archives/"><div><p class="heading">文章</p><div><p class="title">12</p></div></div></a><a class="level-item has-text-centered is-marginless" href="/categories/"><div><p class="heading">分类</p><div><p class="title">6</p></div></div></a><a class="level-item has-text-centered is-marginless" href="/tags/"><div><p class="heading">标签</p><div><p class="title">9</p></div></div></a></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/BuRNIngsuperman" target="_blank" rel="noopener"><i class="fab fa-github"></i>  关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/BuRNIngsuperman"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="/jinqiuyang1107@foxmail.com"><i class="fa fa-envelope"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#查询语句"><span class="level-left"><span class="level-item">1</span><span class="level-item">查询语句</span></span></a></li><li><a class="level is-mobile" href="#更新语句"><span class="level-left"><span class="level-item">2</span><span class="level-item">更新语句</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#三大日志文件"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">三大日志文件</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#redolog"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">redolog</span></span></a></li><li><a class="level is-mobile" href="#binlog"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">binlog</span></span></a></li><li><a class="level is-mobile" href="#undolog"><span class="level-left"><span class="level-item">2.1.3</span><span class="level-item">undolog</span></span></a></li></ul></li><li><a class="level is-mobile" href="#更新语句-1"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">更新语句</span></span></a></li></ul></li><li><a class="level is-mobile" href="#小节"><span class="level-left"><span class="level-item">3</span><span class="level-item">小节</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="BurningCode&#039;s Blog" height="28"></a><p class="is-size-7"><span>&copy; 2022 BurningCode</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-nc"></i> <i class="fab fa-creative-commons-sa"></i> </a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="BurningCode GitHub" href="https://github.com/BuRNIngsuperman"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/katex.min.css"><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/katex.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/contrib/auto-render.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/KaTeX/0.11.1/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
